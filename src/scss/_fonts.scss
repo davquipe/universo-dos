@@ -1,14 +1,39 @@
-/* src/scss/_fonts.scss  (SIN @font-face) */
+@font-face {
+	font-family: 'EPBentonSans';
+	src: url('https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/mundial-de-clubes-2029-clasificacion-tabla-de-posiciones-como-van-equipos-conmebol/fonts/EP_BentonSans-Regular_O.otf')
+		format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'EPBentonSansCond';
+	src: url('https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/mundial-de-clubes-2029-clasificacion-tabla-de-posiciones-como-van-equipos-conmebol/fonts/EP_BentonSansCond-Book_O.otf')
+		format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'EPBentonSansExtraComp';
+	src: url('https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/mundial-de-clubes-2029-clasificacion-tabla-de-posiciones-como-van-equipos-conmebol/fonts/EP_BentonSansExtraComp-Medium_O.otf')
+		format('opentype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
 :root {
-	--ff-regular: 'EPBentonSans', system-ui, -apple-system, 'Segoe UI', Roboto,
-		Arial, sans-serif;
-	--ff-cond: 'EPBentonSansCond', 'EPBentonSans', system-ui, -apple-system,
-		'Segoe UI', Roboto, Arial, sans-serif;
-	--ff-xc: 'EPBentonSansExtraComp', 'EPBentonSans', system-ui, -apple-system,
-		'Segoe UI', Roboto, Arial, sans-serif;
+	--ff-regular: 'EPBentonSans';
+	--ff-cond: 'EPBentonSansCond';
+	--ff-xc: 'EPBentonSansExtraComp';
 }
 
 html,
 body {
 	font-family: var(--ff-regular);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
