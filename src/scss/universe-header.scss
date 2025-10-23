@@ -1,0 +1,198 @@
+@use './fonts';
+
+$max: 980px;
+$red: #d24343;
+$red-800: #b73131;
+$neutral: #dedede;
+$neutral-700: #bdbdbd;
+$text: #6b6b6b;
+$shadow: 0 8px 14px rgba(0, 0, 0, 0.12);
+$radius: 14px;
+
+/* Evita desbordes laterales */
+html,
+body {
+	margin: 0;
+}
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+body {
+	overflow-x: hidden;
+}
+
+:root {
+	--padY: 14px;
+	--padX: 22px;
+}
+
+.uheader {
+	max-width: $max;
+	margin: 0 auto;
+	text-align: center;
+	padding: 0 12px; /* se quita en mobile */
+
+	/* ===== Hero ===== */
+	&__hero {
+		width: 100%;
+		height: 380px; /* desktop */
+		overflow: hidden;
+		background-image: var(--bg-desktop);
+		background-size: cover;
+		background-position: center top;
+		background-repeat: no-repeat;
+	}
+
+	/* ===== Logo opcional ===== */
+	&__logo {
+		width: clamp(220px, 48vw, 380px);
+		transform: translateY(30%);
+		filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.45));
+	}
+
+	/* ===== Lead ===== */
+	&__lead {
+		margin: 30px auto 30px;
+		max-width: 640px;
+		color: $text;
+		font-size: clamp(16px, 1.6vw, 20px);
+		line-height: 1.4;
+		font-family: var(--ff-regular);
+	}
+
+	/* ===== Search (se mantiene) ===== */
+	&__search {
+		position: relative;
+		max-width: 390px;
+		margin: 0 auto 40px;
+
+		input {
+			width: 100%;
+			height: 44px;
+			border-radius: 3px;
+			border: 1px solid #dcdcdc;
+			padding: 0 44px 0 14px;
+			font-size: 15px;
+			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06) inset, $shadow;
+			color: #333;
+
+			&::placeholder {
+				color: #9e9e9e;
+			}
+			&:focus {
+				outline: 3px solid rgba(210, 67, 67, 0.2);
+			}
+		}
+
+		button {
+			position: absolute;
+			right: 8px;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 32px;
+			height: 32px;
+			border: 0;
+			border-radius: 8px;
+			background: transparent;
+			color: #9e9e9e;
+			display: grid;
+			place-items: center;
+			cursor: pointer;
+
+			svg {
+				width: 22px;
+				height: 22px;
+			}
+			&:hover {
+				color: #6d6d6d;
+			}
+			&:focus-visible {
+				outline: 2px solid rgba(0, 0, 0, 0.25);
+				outline-offset: 2px;
+			}
+		}
+	}
+
+	/* ===== CTA Buttons ===== */
+	&__cta {
+		display: flex;
+		gap: 18px;
+		justify-content: center;
+		margin-bottom: 30px;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		appearance: none;
+		border: 0;
+		border-radius: $radius;
+		padding: var(--padY) var(--padX);
+		font-weight: 600;
+		font-family: var(--ff-xc);
+		letter-spacing: 0.3px;
+		cursor: pointer;
+		box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2), $shadow;
+		transition: transform 0.08s ease, filter 0.12s ease;
+
+		&:active {
+			transform: translateY(1px);
+		}
+		&:focus-visible {
+			outline: 3px solid rgba(0, 0, 0, 0.3);
+			outline-offset: 2px;
+		}
+
+		&--primary {
+			background: $red;
+			color: #fff;
+			text-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+			&:hover {
+				filter: brightness(0.96);
+				background: $red-800;
+			}
+			font-size: 15px;
+		}
+		&--neutral {
+			background: $neutral;
+			color: #444;
+			box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.6),
+				inset 0 -2px 0 rgba(0, 0, 0, 0.08), $shadow;
+			&:hover {
+				background: $neutral-700;
+			}
+			font-size: 15px;
+		}
+	}
+
+	/* ===== MOBILE ===== */
+	@media (max-width: 640px) {
+		padding: 0; /* el resto tendrá padding propio */
+		max-width: 100%;
+
+		&__hero {
+			/* full-bleed a ras del dispositivo */
+			width: 100vw;
+			margin-left: calc(50% - 50vw);
+			/* queremos ver la imagen COMPLETA como en tu captura */
+			aspect-ratio: 16/9; /* ajusta si tu arte es 21/9 o 3/2 */
+			height: auto; /* lo maneja aspect-ratio */
+			background-image: var(--bg-mobile);
+			background-size: contain;
+			background-position: top center;
+			background-repeat: no-repeat;
+			background-color: #fff;
+			border-radius: 0;
+		}
+
+		&__lead,
+		&__search {
+			padding: 0 12px;
+		}
+		.btn {
+			--padY: 12px;
+			--padX: 18px;
+		}
+	}
+}

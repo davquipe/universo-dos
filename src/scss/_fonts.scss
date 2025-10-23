@@ -1,0 +1,14 @@
+/* src/scss/_fonts.scss  (SIN @font-face) */
+:root {
+	--ff-regular: 'EPBentonSans', system-ui, -apple-system, 'Segoe UI', Roboto,
+		Arial, sans-serif;
+	--ff-cond: 'EPBentonSansCond', 'EPBentonSans', system-ui, -apple-system,
+		'Segoe UI', Roboto, Arial, sans-serif;
+	--ff-xc: 'EPBentonSansExtraComp', 'EPBentonSans', system-ui, -apple-system,
+		'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+html,
+body {
+	font-family: var(--ff-regular);
+}

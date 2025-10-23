@@ -1,0 +1,48 @@
+$container-max: 1200px;
+$bar-bg: #000;
+$icon-bg: #fff;
+$icon-fg: #000;
+$icon-size: 28px;   // más pequeño, como tu captura
+$gap: 8px;
+
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.app-header {
+  position: sticky; top: 0; z-index: 100;
+
+  &__topbar {
+    background: $bar-bg;
+    padding: 6px 0;              // altura finita
+    // SIN franja ::after
+
+    .social {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; gap: $gap;
+      justify-content: flex-end; align-items: center;
+
+      a {
+        width: $icon-size; height: $icon-size;
+        border-radius: 50%;
+        background: $icon-bg; color: $icon-fg;
+        display: inline-flex; align-items: center; justify-content: center;
+        text-decoration: none;
+        line-height: 1; transition: transform .15s ease;
+
+        &:hover { transform: translateY(-1px); }
+        svg { width: 56%; height: 56%; display: block; }
+      }
+    }
+  }
+
+  &__main { background: #fff; } // por si luego pones logo/nav
+}
+
+@media (max-width: 480px) {
+  .app-header { display: none;}
+  .app-header__topbar { padding: 5px 0; }
+  .app-header__topbar .social a { width: 26px; height: 26px; }
+}
