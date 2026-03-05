@@ -97,12 +97,9 @@ function PositionImg({ code }: { code: string }) {
 	const pos = POS_MAP[code?.toUpperCase()]
 	if (!pos) return <span>{code || '—'}</span>
 	return (
-		<img
-			className="pt__pitch"
-			src={pos.img}
-			alt={pos.label}
-			title={pos.label}
-		/>
+		<span className="pt__posWrap" data-tooltip={pos.label} tabIndex={0}>
+			<img className="pt__pitch" src={pos.img} alt={pos.label} />
+		</span>
 	)
 }
 
