@@ -138,7 +138,7 @@ export default function PlayerTable({
 	const isMobile = useIsMobile()
 
 	if (!loading && !sorted.length)
-		return <p style={{ padding: 16 }}>{emptyStateText}</p>
+		return <p className="pt">{emptyStateText}</p>
 
 	return (
 		<div className="pt">

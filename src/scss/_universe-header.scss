@@ -241,5 +241,11 @@ body {
 				font-size: 11px;
 			}
 		}
+		&__dtItem {
+			padding: 4px 8px;
+			border: 0;
+			font: 400 10px/14px var(--ff-regular);
+			color: #545455;
+		}
 	}
 }
