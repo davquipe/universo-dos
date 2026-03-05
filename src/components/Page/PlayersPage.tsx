@@ -71,10 +71,24 @@ export default function PlayersPage({
 					aria-label="Busca un jugador"
 				/>
 				<button type="submit" aria-label="Buscar">
-					<svg viewBox="0 0 24 24" aria-hidden="true">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 512 512">
+						<circle
+							cx="221.09"
+							cy="221.09"
+							r="157.09"
+							fill="none"
+							stroke="#B9B9B9"
+							stroke-width="32"
+							stroke-miterlimit="10"
+						/>
 						<path
-							d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79L20 21.5 21.5 20l-6-6zM6.5 11a4.5 4.5 0 1 1 9 0a4.5 4.5 0 0 1-9 0z"
-							fill="currentColor"
+							d="M338.29 338.29 448 448"
+							fill="none"
+							stroke="#B9B9B9"
+							stroke-width="32"
+							stroke-linecap="round"
 						/>
 					</svg>
 				</button>

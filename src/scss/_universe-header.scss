@@ -72,17 +72,15 @@ body {
 		input {
 			width: 100%;
 			height: 44px;
-			border-radius: 3px;
-			border: 1px solid #dcdcdc;
-			padding: 0 44px 0 14px;
-			font-size: 15px;
-			box-shadow:
-				0 3px 10px rgba(0, 0, 0, 0.06) inset,
-				$shadow;
+			border-radius: 10px;
+			border: 0.5px solid #b9b9b9;
+			padding: 0 44px 0 18px;
+			font-size: 14px;
+			box-shadow: inset 1px 2px 6px #0000002b;
 			color: #333;
 
 			&::placeholder {
-				color: #9e9e9e;
+				color: #b0b0b0;
 			}
 			&:focus {
 				outline: 3px solid rgba(210, 67, 67, 0.2);
