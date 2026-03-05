@@ -153,8 +153,8 @@ $head-text: #fff;
 	justify-content: center;
 }
 .pt__pitch {
-	width: 34px;
-	height: 24px;
+	max-width: 50px;
+	height: auto;
 	object-fit: contain;
 }
 .pt__pitch--placeholder {
