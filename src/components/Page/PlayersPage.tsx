@@ -44,7 +44,6 @@ export default function PlayersPage({
 		e.preventDefault()
 	}
 
-	if (isLoading) return <p>Cargando jugadores…</p>
 	if (isError) return <p>Hubo un error al cargar los datos.</p>
 
 	return (
@@ -87,12 +86,11 @@ export default function PlayersPage({
 				</button>
 			</form>
 
-			{/* Tabla con filas filtradas y resaltado */}
 			<PlayerTable
 				rows={filteredRows}
-				// onRowClick={(row) => console.log('Jugador:', row)}
 				highlightQuery={q}
 				emptyStateText="No hay jugadores que coincidan."
+				loading={isLoading}
 			/>
 		</>
 	)

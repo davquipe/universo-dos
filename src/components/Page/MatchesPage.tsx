@@ -28,8 +28,23 @@ export default function MatchesPage() {
 		return groupByMatch(data)
 	}, [data])
 
-	if (isLoading) return <p>Cargando partidos…</p>
 	if (isError) return <p>Hubo un error al cargar los datos.</p>
+
+	if (isLoading) {
+		return (
+			<div
+				className="pt"
+				style={{
+					maxWidth: 980,
+					margin: '14px auto',
+					padding: '0 12px',
+				}}>
+				{Array.from({ length: 3 }).map((_, i) => (
+					<div key={i} className="pt__skel pt__skel--accordion" />
+				))}
+			</div>
+		)
+	}
 
 	return (
 		<>

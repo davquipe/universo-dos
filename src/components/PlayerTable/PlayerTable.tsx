@@ -20,6 +20,7 @@ type Props = {
 	onRowClick?: (row: PlayerRow) => void
 	highlightQuery?: string
 	emptyStateText?: string
+	loading?: boolean
 }
 
 function useIsMobile(breakpoint = 640) {
@@ -108,6 +109,7 @@ export default function PlayerTable({
 	onRowClick,
 	highlightQuery,
 	emptyStateText = 'No hay datos para mostrar.',
+	loading = false,
 }: Props) {
 	const [sortKey, setSortKey] = useState<SortKey>('name')
 	const [sortAsc, setSortAsc] = useState(true)
@@ -135,7 +137,8 @@ export default function PlayerTable({
 
 	const isMobile = useIsMobile()
 
-	if (!sorted.length) return <p style={{ padding: 16 }}>{emptyStateText}</p>
+	if (!loading && !sorted.length)
+		return <p style={{ padding: 16 }}>{emptyStateText}</p>
 
 	return (
 		<div className="pt">
@@ -270,91 +273,140 @@ export default function PlayerTable({
 					</div>
 				</div>
 
-				{/* ROWS */}
-				{sorted.map((r) => {
-					const [first, ...rest] = r.name.split(' ')
-					const firstHighlighted = highlightText(
-						first,
-						highlightQuery,
-					)
-					const restHighlighted = highlightText(
-						rest.join(' '),
-						highlightQuery,
-					)
-
-					return (
+				{/* SKELETON */}
+				{loading &&
+					Array.from({ length: 8 }).map((_, i) => (
 						<div
-							key={r.id}
-							className="pt__row"
-							role="row"
-							onClick={() => onRowClick?.(r)}>
+							key={`sk-${i}`}
+							className="pt__row pt__row--skeleton"
+							role="row">
 							<div
 								className="pt__cell pt__cell--player"
 								role="cell">
 								<div className="pt__avatarWrap">
-									{r.avatarUrl ? (
-										<img
-											className="pt__avatar"
-											src={r.avatarUrl}
-											alt={r.name}
-										/>
-									) : (
-										<span
-											className="pt__avatar pt__avatar--placeholder"
-											aria-hidden
-										/>
-									)}
+									<span className="pt__skel pt__skel--circle" />
 								</div>
-								<div
-									className={`pt__name ${
-										isMobile ? 'is-mobile' : 'is-desktop'
-									}`}>
-									{isMobile ? (
-										<>
-											<span className="pt__nameTop">
-												{firstHighlighted}
-											</span>
-											<span className="pt__nameBottom">
-												{restHighlighted}
-											</span>
-										</>
-									) : (
-										<>
-											{firstHighlighted} {restHighlighted}
-										</>
-									)}
-								</div>
+								<div className="pt__skel pt__skel--text" />
 							</div>
-
 							<div className="pt__cell pt__cell--pos" role="cell">
-								<PositionImg code={r.position} />
-							</div>
-
-							<div className="pt__cell" role="cell">
-								{r.matches}
+								<span className="pt__skel pt__skel--pos" />
 							</div>
 							<div className="pt__cell" role="cell">
-								{r.minutes}
+								<span className="pt__skel pt__skel--num" />
 							</div>
 							<div className="pt__cell" role="cell">
-								{r.goals}
+								<span className="pt__skel pt__skel--num" />
 							</div>
 							<div className="pt__cell" role="cell">
-								{r.assists}
+								<span className="pt__skel pt__skel--num" />
+							</div>
+							<div className="pt__cell" role="cell">
+								<span className="pt__skel pt__skel--num" />
 							</div>
 							<div
 								className="pt__cell pt__cell--cardVal"
 								role="cell">
-								{r.yellow}
+								<span className="pt__skel pt__skel--num" />
 							</div>
 							<div
 								className="pt__cell pt__cell--cardVal"
 								role="cell">
-								{r.red}
+								<span className="pt__skel pt__skel--num" />
 							</div>
 						</div>
-					)
-				})}
+					))}
+
+				{/* ROWS */}
+				{!loading &&
+					sorted.map((r) => {
+						const [first, ...rest] = r.name.split(' ')
+						const firstHighlighted = highlightText(
+							first,
+							highlightQuery,
+						)
+						const restHighlighted = highlightText(
+							rest.join(' '),
+							highlightQuery,
+						)
+
+						return (
+							<div
+								key={r.id}
+								className="pt__row"
+								role="row"
+								onClick={() => onRowClick?.(r)}>
+								<div
+									className="pt__cell pt__cell--player"
+									role="cell">
+									<div className="pt__avatarWrap">
+										{r.avatarUrl ? (
+											<img
+												className="pt__avatar"
+												src={r.avatarUrl}
+												alt={r.name}
+											/>
+										) : (
+											<span
+												className="pt__avatar pt__avatar--placeholder"
+												aria-hidden
+											/>
+										)}
+									</div>
+									<div
+										className={`pt__name ${
+											isMobile
+												? 'is-mobile'
+												: 'is-desktop'
+										}`}>
+										{isMobile ? (
+											<>
+												<span className="pt__nameTop">
+													{firstHighlighted}
+												</span>
+												<span className="pt__nameBottom">
+													{restHighlighted}
+												</span>
+											</>
+										) : (
+											<>
+												{firstHighlighted}{' '}
+												{restHighlighted}
+											</>
+										)}
+									</div>
+								</div>
+
+								<div
+									className="pt__cell pt__cell--pos"
+									role="cell">
+									<PositionImg code={r.position} />
+								</div>
+
+								<div className="pt__cell" role="cell">
+									{r.matches}
+								</div>
+								<div className="pt__cell" role="cell">
+									{r.minutes}
+								</div>
+								<div className="pt__cell" role="cell">
+									{r.goals}
+								</div>
+								<div className="pt__cell" role="cell">
+									{r.assists}
+								</div>
+								<div
+									className="pt__cell pt__cell--cardVal"
+									role="cell">
+									{r.yellow}
+								</div>
+								<div
+									className="pt__cell pt__cell--cardVal"
+									role="cell">
+									{r.red}
+								</div>
+							</div>
+						)
+					})}
 			</div>
 		</div>
 	)

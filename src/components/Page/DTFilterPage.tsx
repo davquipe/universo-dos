@@ -15,7 +15,6 @@ export default function DTFilterPage({ selectedDT }: Props) {
 		return aggregatePlayers(filtered)
 	}, [data, selectedDT])
 
-	if (isLoading) return <p>Cargando datos…</p>
 	if (isError) return <p>Hubo un error al cargar los datos.</p>
 	if (!selectedDT)
 		return (
@@ -28,6 +27,7 @@ export default function DTFilterPage({ selectedDT }: Props) {
 		<PlayerTable
 			rows={rows}
 			emptyStateText="No hay jugadores para este DT."
+			loading={isLoading}
 		/>
 	)
 }
