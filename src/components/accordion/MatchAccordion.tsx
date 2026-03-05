@@ -62,18 +62,18 @@ const MatchAccordion = ({
 					<svg
 						className={`ma__chevIcon ${open ? 'is-open' : ''}`}
 						viewBox="0 0 24 24"
-						width="22"
-						height="22"
-						aria-hidden="true">
-						<path
-							d="M6.7 9.3a1 1 0 0 1 1.4 0L12 13.2l3.9-3.9a1 1 0 1 1 1.4 1.4l-4.6 4.6a1 1 0 0 1-1.4 0L6.7 10.7a1 1 0 0 1 0-1.4z"
-							fill="currentColor"
-						/>
+						width="16"
+						height="16"
+						fill="none"
+						stroke="#000"
+						stroke-width="1.6"
+						stroke-linecap="round"
+						stroke-linejoin="round">
+						<path d="M6 9l6 6 6-6" />
 					</svg>
 				</button>
 			</header>
 
-			{/* Panel deslizante */}
 			<div
 				id="match-panel"
 				className={`ma__panel ${open ? 'is-open' : ''}`}>

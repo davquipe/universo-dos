@@ -13,7 +13,7 @@ $text: #222;
 
 .ma__head {
 	display: grid;
-	grid-template-columns: minmax(140px, 1fr) minmax(260px, 3fr) 44px;
+	grid-template-columns: minmax(140px, 1fr) minmax(260px, 3fr) 59px;
 	align-items: stretch;
 	overflow: hidden;
 	box-shadow: 0 0 0 1px #ddd inset;
@@ -37,6 +37,7 @@ $text: #222;
 	font-weight: 700;
 }
 .ma__dateText {
+	font-family: var(--ff-regular);
 	font-size: clamp(11px, 1.15vw, 13px);
 	line-height: 1.15;
 	color: #4a4a4a;
@@ -65,6 +66,7 @@ $text: #222;
 	text-align: center;
 }
 .ma__venue {
+	font-family: var(--ff-cond);
 	font-size: 12.2px;
 	opacity: 0.9;
 	text-align: center;
@@ -108,15 +110,22 @@ $text: #222;
 
 @media (max-width: 680px) {
 	.ma__head {
-		grid-template-columns: minmax(120px, 1fr) minmax(180px, 3fr) 44px;
+		grid-template-columns: minmax(115px, 1fr) minmax(180px, 3fr) 59px;
 	}
 	.ma__title {
 		font-size: 16px;
+		line-height: 19px;
 	}
 	.ma__venue {
-		font-size: 11.6px;
+		font-size: 9px;
+	}
+	.ma__date {
+		padding: 14px 6px;
+	}
+	.ma__dt {
+		font-size: 8px;
 	}
 	.ma__dateText {
-		font-size: 12px;
+		font-size: 9px;
 	}
 }

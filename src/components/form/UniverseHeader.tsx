@@ -41,21 +41,19 @@ const UniverseHeader = ({
 
 	return (
 		<header className="uheader">
-			{/* Banner de fondo */}
 			<div className="uheader__hero">
 				<picture>
-					{mobileBgUrl && (
-						<source
-							media="(max-width: 640px)"
-							srcSet={mobileBgUrl}
-						/>
-					)}
+					<source media="(min-width: 641px)" srcSet={bgUrl} />
+					<source
+						media="(max-width: 640px)"
+						srcSet={mobileBgUrl ?? bgUrl}
+					/>
 					<img
-						src={bgUrl}
+						src={mobileBgUrl ?? bgUrl}
 						alt="Banner principal del universo de clubes"
 						className="uheader__heroImg"
-						loading="lazy"
 						decoding="async"
+						fetchPriority="high"
 					/>
 				</picture>
 			</div>
