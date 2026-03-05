@@ -76,7 +76,9 @@ body {
 			border: 1px solid #dcdcdc;
 			padding: 0 44px 0 14px;
 			font-size: 15px;
-			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06) inset, $shadow;
+			box-shadow:
+				0 3px 10px rgba(0, 0, 0, 0.06) inset,
+				$shadow;
 			color: #333;
 
 			&::placeholder {
@@ -134,8 +136,12 @@ body {
 		font-family: var(--ff-xc);
 		letter-spacing: 0.3px;
 		cursor: pointer;
-		box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2), $shadow;
-		transition: transform 0.08s ease, filter 0.12s ease;
+		box-shadow:
+			0 4px 0 rgba(0, 0, 0, 0.2),
+			$shadow;
+		transition:
+			transform 0.08s ease,
+			filter 0.12s ease;
 
 		&:active {
 			transform: translateY(1px);
@@ -158,12 +164,42 @@ body {
 		&--neutral {
 			background: $neutral;
 			color: #444;
-			box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.6),
-				inset 0 -2px 0 rgba(0, 0, 0, 0.08), $shadow;
+			box-shadow:
+				inset 0 2px 0 rgba(255, 255, 255, 0.6),
+				inset 0 -2px 0 rgba(0, 0, 0, 0.08),
+				$shadow;
 			&:hover {
 				background: $neutral-700;
 			}
 			font-size: 15px;
+		}
+	}
+
+	/* ===== DT Select ===== */
+	&__dtSelect {
+		max-width: 390px;
+		margin: 0 auto 30px;
+		padding: 0 12px;
+
+		select {
+			width: 100%;
+			height: 44px;
+			border-radius: $radius;
+			border: 1px solid #dcdcdc;
+			padding: 0 14px;
+			font-size: 15px;
+			font-family: var(--ff-regular);
+			color: #333;
+			background: #fff;
+			box-shadow:
+				0 3px 10px rgba(0, 0, 0, 0.06) inset,
+				$shadow;
+			cursor: pointer;
+			appearance: auto;
+
+			&:focus {
+				outline: 3px solid rgba(210, 67, 67, 0.2);
+			}
 		}
 	}
 

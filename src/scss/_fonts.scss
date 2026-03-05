@@ -26,9 +26,9 @@
 }
 
 :root {
-	--ff-regular: 'EPBentonSans';
-	--ff-cond: 'EPBentonSansCond';
-	--ff-xc: 'EPBentonSansExtraComp';
+	--ff-regular: 'EPBentonSans', sans-serif;
+	--ff-cond: 'EPBentonSansCond', 'EPBentonSans', sans-serif;
+	--ff-xc: 'EPBentonSansExtraComp', 'EPBentonSans', sans-serif;
 }
 
 html,

@@ -3,15 +3,19 @@ type Props = {
 	bgUrl: string
 	/** Imagen de fondo para mobile (fallback: usa bgUrl si no se pasa) */
 	mobileBgUrl?: string
+	activeView?: string
 	onClickGeneral?: () => void
 	onClickMatches?: () => void
+	onClickByDT?: () => void
 }
 
 const UniverseHeader = ({
 	bgUrl,
 	mobileBgUrl,
+	activeView = 'general',
 	onClickGeneral,
 	onClickMatches,
+	onClickByDT,
 }: Props) => {
 	return (
 		<header className="uheader">
@@ -43,16 +47,22 @@ const UniverseHeader = ({
 			{/* Botones */}
 			<div className="uheader__cta">
 				<button
-					className="btn btn--primary"
+					className={`btn ${activeView === 'general' ? 'btn--primary' : 'btn--neutral'}`}
 					type="button"
 					onClick={onClickGeneral}>
-					INFORMACIÓN GENERAL
+					MINUTOS ACUMULADOS
 				</button>
 				<button
-					className="btn btn--neutral"
+					className={`btn ${activeView === 'matches' ? 'btn--primary' : 'btn--neutral'}`}
 					type="button"
 					onClick={onClickMatches}>
 					VER TODOS LOS PARTIDOS
+				</button>
+				<button
+					className={`btn ${activeView === 'byDT' ? 'btn--primary' : 'btn--neutral'}`}
+					type="button"
+					onClick={onClickByDT}>
+					FILTRAR POR DT
 				</button>
 			</div>
 		</header>

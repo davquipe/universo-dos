@@ -5,7 +5,14 @@ import type { PlayerRow } from '../../types/types'
 
 type SortKey = keyof Pick<
 	PlayerRow,
-	'name' | 'matches' | 'minutes' | 'goals' | 'assists' | 'yellow' | 'red'
+	| 'name'
+	| 'position'
+	| 'matches'
+	| 'minutes'
+	| 'goals'
+	| 'assists'
+	| 'yellow'
+	| 'red'
 >
 
 type Props = {
@@ -140,11 +147,11 @@ export default function PlayerTable({
 						<button
 							type="button"
 							className="pt__sort pt__sort--pos"
-							onClick={() => handleSort('minutes')}>
+							onClick={() => handleSort('position')}>
 							<span className="pt__label--full">Posición</span>
 							<span className="pt__label--short">Pos.</span>
 							<SortIcon
-								active={sortKey === 'minutes'}
+								active={sortKey === 'position'}
 								asc={sortAsc}
 							/>
 						</button>
@@ -300,15 +307,7 @@ export default function PlayerTable({
 							</div>
 
 							<div className="pt__cell pt__cell--pos" role="cell">
-								{r.pitchImgUrl ? (
-									<img
-										className="pt__pitch"
-										src={r.pitchImgUrl}
-										alt={`Posición de ${r.name}`}
-									/>
-								) : (
-									<span className="pt__pitch pt__pitch--placeholder" />
-								)}
+								{r.position || '—'}
 							</div>
 
 							<div className="pt__cell" role="cell">

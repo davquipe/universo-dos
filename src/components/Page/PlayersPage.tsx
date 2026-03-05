@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo, useState, type FormEvent, useEffect } from 'react'
 import PlayerTable from '../PlayerTable/PlayerTable'
-import { useScores } from '../../hooks/userPlayer'
+import { useScores, aggregatePlayers } from '../../hooks/userPlayer'
 import type { PlayerRow } from '../../types/types'
 
 // ——— Normaliza string (sin acentos, minúsculas) ———
@@ -37,18 +37,7 @@ export default function PlayersPage({
 
 	const rows: PlayerRow[] = useMemo(() => {
 		if (!data) return []
-		return data.map((r: any, idx: number) => ({
-			id: idx,
-			name: r.jugador,
-			avatarUrl: r.jugadorImagen || undefined,
-			pitchImgUrl: r.posicionImagen || undefined,
-			matches: r.partidos ?? 0,
-			minutes: r.minutos ?? 0,
-			goals: r.goles ?? 0,
-			assists: r.asistencias ?? 0,
-			yellow: r.tarjetasAmarillas ?? 0,
-			red: r.tarjetasRojas ?? 0,
-		}))
+		return aggregatePlayers(data)
 	}, [data])
 
 	const filteredRows = useMemo(() => {
