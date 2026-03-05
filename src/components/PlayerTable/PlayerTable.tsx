@@ -83,6 +83,29 @@ function highlightText(name: string, q?: string) {
 	)
 }
 
+const POS_BASE =
+	'https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/mundial-de-clubes-2029-clasificacion-tabla-de-posiciones-como-van-equipos-conmebol/img'
+
+const POS_MAP: Record<string, { img: string; label: string }> = {
+	ARQ: { img: `${POS_BASE}/arq.png`, label: 'Arquero' },
+	DEF: { img: `${POS_BASE}/def.png`, label: 'Defensor' },
+	VOL: { img: `${POS_BASE}/vol.png`, label: 'Volante' },
+	DEL: { img: `${POS_BASE}/del.png`, label: 'Delantero' },
+}
+
+function PositionImg({ code }: { code: string }) {
+	const pos = POS_MAP[code?.toUpperCase()]
+	if (!pos) return <span>{code || '—'}</span>
+	return (
+		<img
+			className="pt__pitch"
+			src={pos.img}
+			alt={pos.label}
+			title={pos.label}
+		/>
+	)
+}
+
 export default function PlayerTable({
 	rows,
 	onRowClick,
@@ -307,7 +330,7 @@ export default function PlayerTable({
 							</div>
 
 							<div className="pt__cell pt__cell--pos" role="cell">
-								{r.position || '—'}
+								<PositionImg code={r.position} />
 							</div>
 
 							<div className="pt__cell" role="cell">
