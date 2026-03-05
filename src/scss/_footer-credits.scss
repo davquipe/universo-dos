@@ -1,65 +1,70 @@
 $max: 980px;
 $grey: #6c6c6c;
-$yellow: #ffcc00;      // amarillo EC
-$shadow: rgba(0,0,0,.18);
+$yellow: #ffcc00;
+$shadow: rgba(0, 0, 0, 0.18);
 
 .fc {
-  max-width: $max;
-  margin: 48px auto 40px;
-  padding: 0 16px;
-  text-align: center;
+	max-width: $max;
+	margin: 48px auto 40px;
+	padding: 0 16px;
+	text-align: center;
 
-  /* sólo para lectores de pantalla */
-  &__sr {
-    position: absolute !important;
-    height: 1px; width: 1px; overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px); white-space: nowrap;
-  }
+	&__sr {
+		position: absolute !important;
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
+		clip: rect(1px, 1px, 1px, 1px);
+		white-space: nowrap;
+	}
 
-  /* --- Logo circular con espacio reservado --- */
-  &__logo {
-    width: 88px; height: 88px;
-    margin: 0 auto 5px;
-    display: grid; place-items: center;
-    overflow: hidden;
+	&__logo {
+		width: 88px;
+		height: 88px;
+		margin: 0 auto 5px;
+		display: grid;
+		place-items: center;
+		overflow: hidden;
 
-    img {
-      display: block;
-      width: 72%; height: 72%;
-      object-fit: contain;
-    }
+		img {
+			display: block;
+			width: 72%;
+			height: 72%;
+			object-fit: contain;
+		}
+	}
 
-    /* Placeholder (si no pasan logoUrl) */
-    .fc__logoMark {
-      font-weight: 800;
-      font-size: 42px;
-      line-height: 1;
-      color: #000;
-      font-family: Georgia, "Times New Roman", serif;
-      transform: translateY(2px);
-    }
-  }
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		color: $grey;
+		font-size: 18px;
+		line-height: normal;
+		font-family: var(--ff-cond);
+	}
 
-  /* --- Lista de créditos --- */
-  &__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    color: $grey;
-    font-size: 18px;
-    line-height: 1.2;
-    font-family: var(--ff-cond);
-  }
+	&__item {
+		margin: 6px 0;
+	}
 
-  &__item { margin: 4px 0; }
+	&__label {
+		color: $grey;
+	}
+	&__name {
+		color: #545455;
+		font-weight: 800;
+	}
 
-  &__label { color: $grey; }
-  &__name  { color: #545455; font-weight: 800; }
+	@media (max-width: 480px) {
+		margin: 36px auto 28px;
 
-  @media (max-width: 480px) {
-    margin: 36px auto 28px;
-
-    &__logo { width: 74px; height: 74px; }
-    &__list { font-size: 16px; }
-  }
+		&__logo {
+			width: 74px;
+			height: 74px;
+		}
+		&__list {
+			font-size: 16px;
+		}
+	}
 }

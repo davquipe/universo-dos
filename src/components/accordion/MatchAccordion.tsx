@@ -6,6 +6,7 @@ type Props = {
 	dateLabel: string // "10 de octubre de 2025 (Amistoso)"
 	title: string // "Chile 2 - 2 Perú"
 	venue: string // "Estadio Bicentenario de La Florida - CHILE"
+	dt?: string // "Manuel Barreto"
 	rows: PlayerRow[] // filas para la tabla
 	defaultOpen?: boolean // si inicia abierto
 	onToggle?: (open: boolean) => void
@@ -15,6 +16,7 @@ const MatchAccordion = ({
 	dateLabel,
 	title,
 	venue,
+	dt,
 	rows,
 	defaultOpen = false,
 	onToggle,
@@ -32,6 +34,11 @@ const MatchAccordion = ({
 			{/* Encabezado */}
 			<header className="ma__head" role="heading" aria-level={2}>
 				<div className="ma__date">
+					{dt && (
+						<span className="ma__dt">
+							<strong>DT:</strong> {dt}
+						</span>
+					)}
 					<span className="ma__dateText">{dateLabel}</span>
 				</div>
 

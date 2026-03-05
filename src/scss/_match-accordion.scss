@@ -1,112 +1,122 @@
-/* ====== Match Accordion ====== */
 $max: 980px;
 $black: #0b0b0b;
-$red: #d94a45; /* rojo del bloque central */
+$red: #dd3b3c;
 $gray: #f0f0f0;
 $line: #e6e6e6;
 $text: #222;
 
 .ma {
-  max-width: $max;
-  margin: 14px auto 22px;
-  padding: 0 12px;
-  color: $text;
+	max-width: $max;
+	margin: 10px auto;
+	color: $text;
 }
 
-/* Header en 3 columnas: fecha | bloque rojo | flecha */
 .ma__head {
-  display: grid;
-  grid-template-columns: minmax(140px, 1fr) minmax(260px, 3fr) 44px;
-  align-items: stretch;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px #ddd inset;
+	display: grid;
+	grid-template-columns: minmax(140px, 1fr) minmax(260px, 3fr) 44px;
+	align-items: stretch;
+	overflow: hidden;
+	box-shadow: 0 0 0 1px #ddd inset;
 }
 
-/* Caja izquierda (fecha) */
 .ma__date {
-  background: #efefef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 8px;
+	background: #d6d6d6;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 14px;
+	gap: 2px;
+	box-shadow: inset 0px 2px 2px #00000029;
+}
+.ma__dt {
+	font-size: clamp(12px, 1.15vw, 14px);
+	line-height: 1.15;
+	color: $text;
+	white-space: normal;
+	font-weight: 700;
 }
 .ma__dateText {
-  font-size: 12.8px;
-  line-height: 1.15;
-  color: #666;
-  text-align: center;
-  white-space: normal;
+	font-size: clamp(11px, 1.15vw, 13px);
+	line-height: 1.15;
+	color: #4a4a4a;
+	white-space: normal;
 }
 
-/* Botón central (bloque rojo) */
 .ma__center {
-  appearance: none;
-  border: 0;
-  margin: 0;
-  width: 100%;
-  background: $red;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 10px 12px;
-  cursor: pointer;
+	appearance: none;
+	border: 0;
+	margin: 0;
+	width: 100%;
+	background: $red;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	padding: 10px 12px;
+	cursor: pointer;
 }
 .ma__title {
-  font-size: 18px;
-  line-height: 1.05;
-  font-weight: 700;
-  text-align: center;
+	font-size: 22px;
+	line-height: 1.05;
+	font-weight: 500;
+	text-align: center;
 }
 .ma__venue {
-  font-size: 12.2px;
-  opacity: .9;
-  text-align: center;
+	font-size: 12.2px;
+	opacity: 0.9;
+	text-align: center;
 }
 
-/* Flecha derecha */
 .ma__chev {
-  appearance: none;
-  border: 0;
-  background: #efefef;
-  color: #333;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
+	appearance: none;
+	border: 0;
+	background: #efefef;
+	color: #333;
+	display: grid;
+	place-content: center;
+	cursor: pointer;
 }
 .ma__chevIcon {
-  transition: transform .22s ease;
+	transition: transform 0.22s ease;
 }
-.ma__chevIcon.is-open { transform: rotate(180deg); }
+.ma__chevIcon.is-open {
+	transform: rotate(180deg);
+}
 
-/* Panel colapsable con animación */
 .ma__panel {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height .28s ease, opacity .2s ease;
-  opacity: 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  box-shadow: 0 1px 0 $line inset;
+	overflow: hidden;
+	max-height: 0;
+	transition:
+		max-height 0.28s ease,
+		opacity 0.2s ease;
+	opacity: 0;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-shadow: 0 1px 0 $line inset;
 }
 .ma__panel.is-open {
-  max-height: 1200px; /* suficiente para la tabla; ajusta si necesitas */
-  opacity: 1;
+	max-height: 1200px;
+	opacity: 1;
 }
 .ma__panelInner {
-  background: #fff;
-  padding-top: 10px;   /* un respiro entre header y tabla */
+	background: #fff;
+	padding-top: 10px;
 }
 
-/* Responsive: header más ajustado en móvil */
 @media (max-width: 680px) {
-  .ma__head {
-    grid-template-columns: minmax(120px, 1fr) minmax(180px, 3fr) 44px;
-  }
-  .ma__title { font-size: 16px; }
-  .ma__venue { font-size: 11.6px; }
-  .ma__dateText { font-size: 12px; }
+	.ma__head {
+		grid-template-columns: minmax(120px, 1fr) minmax(180px, 3fr) 44px;
+	}
+	.ma__title {
+		font-size: 16px;
+	}
+	.ma__venue {
+		font-size: 11.6px;
+	}
+	.ma__dateText {
+		font-size: 12px;
+	}
 }

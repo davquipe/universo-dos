@@ -54,6 +54,7 @@ export default function MatchesPage() {
 					dateLabel={formatDateLabel(m.fechaFormatted, m.tipo)}
 					title={`${m.local} ${m.golesLocal} - ${m.golesVisita} ${m.visita}`}
 					venue={`${m.estadio} - ${m.ciudadPais}`}
+					dt={m.directorTecnico}
 					rows={m.players}
 					defaultOpen={idx === 0}
 				/>

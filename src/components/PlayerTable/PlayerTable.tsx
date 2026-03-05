@@ -430,7 +430,7 @@ function SortIcon({
 	return (
 		<span className={cls} aria-hidden="true">
 			<svg viewBox="0 0 24 24">
-				<path d="M7 10l5-6 5 6H7zm0 4l5 6 5-6H7z" fill="currentColor" />
+				<path d="M7 10l5-6 5 6H7zm0 4l5 6 5-6H7" fill="currentColor" />
 			</svg>
 		</span>
 	)

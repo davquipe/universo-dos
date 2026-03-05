@@ -23,13 +23,13 @@ $head-text: #fff;
 .pt__row {
 	display: grid;
 	grid-template-columns:
-		minmax(0, 1.6fr)   /* Jugador  */
-		minmax(0, 0.55fr)  /* Posición */
-		minmax(0, 0.5fr)   /* Partidos */
-		minmax(0, 0.6fr)   /* Minutos  */
-		minmax(0, 0.5fr)   /* Goles    */
-		minmax(0, 0.6fr)   /* Asist.   */
-		minmax(0, 0.35fr)  /* 🟨       */
+		minmax(0, 1.6fr) /* Jugador  */
+		minmax(0, 0.55fr) /* Posición */
+		minmax(0, 0.5fr) /* Partidos */
+		minmax(0, 0.6fr) /* Minutos  */
+		minmax(0, 0.5fr) /* Goles    */
+		minmax(0, 0.6fr) /* Asist.   */
+		minmax(0, 0.35fr) /* 🟨       */
 		minmax(0, 0.35fr); /* 🟥       */
 	align-items: center;
 	grid-auto-rows: minmax(40px, auto);
@@ -76,19 +76,17 @@ $head-text: #fff;
 	padding: 10px 4px;
 }
 
-/* ===== Sort buttons ===== */
 .pt__sort {
 	background: transparent;
 	border: 0;
 	color: inherit;
-	font: inherit;
 	display: inline-flex;
 	align-items: center;
 	gap: 2px;
 	cursor: pointer;
 	padding: 0;
-	line-height: 1;
 	max-width: 100%;
+	font: 500 16px/16px var(--ff-xc);
 }
 .pt__sortIcon {
 	width: 18px;
@@ -152,7 +150,6 @@ $head-text: #fff;
 	display: block;
 }
 
-/* ===== Posición — centrada ===== */
 .pt__cell--pos {
 	justify-content: center;
 }
@@ -209,10 +206,8 @@ $head-text: #fff;
 	gap: 4px;
 }
 .pt__card {
-	width: 14px;
-	height: 18px;
-	border: 1px solid #999;
-	border-radius: 2px;
+	width: 10px;
+	height: 12px;
 }
 .pt__card--y {
 	background: #ffda00;
@@ -332,19 +327,19 @@ $skel-bg: linear-gradient(90deg, #eee 25%, #e0e0e0 37%, #eee 63%);
 /* ============== MOBILE (<=640px) ============== */
 @media (max-width: 640px) {
 	.pt {
-		padding: 0 4px;
+		padding: 0;
 	}
 
 	.pt__row {
 		grid-template-columns:
-			minmax(0, 1.6fr)
-			minmax(0, 0.55fr)
-			minmax(0, 0.45fr)
-			minmax(0, 0.55fr)
-			minmax(0, 0.45fr)
-			minmax(0, 0.55fr)
-			minmax(0, 0.35fr)
-			minmax(0, 0.35fr);
+			minmax(0, 0.87fr)
+			minmax(0, 0.37fr)
+			minmax(0, 0.37fr)
+			minmax(0, 0.37fr)
+			minmax(0, 0.37fr)
+			minmax(0, 0.37fr)
+			minmax(0, 0.37fr)
+			minmax(0, 0.37fr);
 		grid-auto-rows: minmax(34px, auto);
 		font-size: 12px;
 	}
