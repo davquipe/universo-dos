@@ -110,7 +110,7 @@ $text: #222;
 
 @media (max-width: 680px) {
 	.ma__head {
-		grid-template-columns: minmax(115px, 1fr) minmax(180px, 3fr) 59px;
+		grid-template-columns: 2fr 3fr 1fr;
 	}
 	.ma__title {
 		font-size: 16px;
