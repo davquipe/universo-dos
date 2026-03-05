@@ -1,7 +1,10 @@
 import { useMemo, useState, type FormEvent, useEffect } from 'react'
 import PlayerTable from '../PlayerTable/PlayerTable'
+import Pagination from '../common/Pagination'
 import { useScores, aggregatePlayers } from '../../hooks/userPlayer'
 import type { PlayerRow } from '../../types/types'
+
+const PAGE_SIZE = 30
 
 function norm(s: string) {
 	return s
@@ -23,6 +26,7 @@ export default function PlayersPage({
 
 	const [qLocal, setQLocal] = useState('')
 	const q = query ?? qLocal
+	const [page, setPage] = useState(1)
 
 	useEffect(() => {
 		if (query !== undefined) setQLocal(query)
@@ -39,6 +43,17 @@ export default function PlayersPage({
 		const nq = norm(query)
 		return rows.filter((r) => norm(r.name).includes(nq))
 	}, [rows, q])
+
+	// Reset page when filter changes
+	useEffect(() => {
+		setPage(1)
+	}, [q])
+
+	const totalPages = Math.max(1, Math.ceil(filteredRows.length / PAGE_SIZE))
+	const pagedRows = filteredRows.slice(
+		(page - 1) * PAGE_SIZE,
+		page * PAGE_SIZE,
+	)
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault()
@@ -87,11 +102,19 @@ export default function PlayersPage({
 			</form>
 
 			<PlayerTable
-				rows={filteredRows}
+				rows={pagedRows}
 				highlightQuery={q}
 				emptyStateText="No hay jugadores que coincidan."
 				loading={isLoading}
 			/>
+
+			{!isLoading && (
+				<Pagination
+					currentPage={page}
+					totalPages={totalPages}
+					onPageChange={setPage}
+				/>
+			)}
 		</>
 	)
 }
