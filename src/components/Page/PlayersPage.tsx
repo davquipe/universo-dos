@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo, useState, type FormEvent, useEffect } from 'react'
 import PlayerTable from '../PlayerTable/PlayerTable'
 import { useScores, aggregatePlayers } from '../../hooks/userPlayer'
 import type { PlayerRow } from '../../types/types'
 
-// ——— Normaliza string (sin acentos, minúsculas) ———
 function norm(s: string) {
 	return s
 		.normalize('NFD')
@@ -13,9 +11,7 @@ function norm(s: string) {
 }
 
 type PlayersPageProps = {
-	/** Query controlada por el padre (UniverseHeader). Si no la pasas, el componente es "no controlado". */
 	query?: string
-	/** Callback opcional si quieres levantar el estado al padre. */
 	onQueryChange?: (q: string) => void
 }
 
@@ -25,12 +21,9 @@ export default function PlayersPage({
 }: PlayersPageProps) {
 	const { data, isLoading, isError } = useScores()
 
-	// Estado interno solo si no hay query controlada
 	const [qLocal, setQLocal] = useState('')
-	// Valor efectivo (controlado o no)
 	const q = query ?? qLocal
 
-	// Si quieres que el input interno siga los cambios del padre:
 	useEffect(() => {
 		if (query !== undefined) setQLocal(query)
 	}, [query])
@@ -48,7 +41,7 @@ export default function PlayersPage({
 	}, [rows, q])
 
 	const handleSubmit = (e: FormEvent) => {
-		e.preventDefault() // evitamos recarga; el filtrado es en vivo por onChange
+		e.preventDefault()
 	}
 
 	if (isLoading) return <p>Cargando jugadores…</p>
@@ -97,7 +90,7 @@ export default function PlayersPage({
 			{/* Tabla con filas filtradas y resaltado */}
 			<PlayerTable
 				rows={filteredRows}
-				onRowClick={(row) => console.log('Jugador:', row)}
+				// onRowClick={(row) => console.log('Jugador:', row)}
 				highlightQuery={q}
 				emptyStateText="No hay jugadores que coincidan."
 			/>

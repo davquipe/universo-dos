@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react'
+
 type Props = {
 	/** Imagen de fondo para desktop */
 	bgUrl: string
@@ -6,7 +8,9 @@ type Props = {
 	activeView?: string
 	onClickGeneral?: () => void
 	onClickMatches?: () => void
-	onClickByDT?: () => void
+	dtList?: string[]
+	selectedDT?: string
+	onSelectDT?: (dt: string) => void
 }
 
 const UniverseHeader = ({
@@ -15,8 +19,26 @@ const UniverseHeader = ({
 	activeView = 'general',
 	onClickGeneral,
 	onClickMatches,
-	onClickByDT,
+	dtList = [],
+	selectedDT,
+	onSelectDT,
 }: Props) => {
+	const [dtOpen, setDtOpen] = useState(false)
+	const dtRef = useRef<HTMLDivElement>(null)
+
+	// Cerrar dropdown al hacer click fuera
+	useEffect(() => {
+		if (!dtOpen) return
+		const handleClickOutside = (e: MouseEvent) => {
+			if (dtRef.current && !dtRef.current.contains(e.target as Node)) {
+				setDtOpen(false)
+			}
+		}
+		document.addEventListener('mousedown', handleClickOutside)
+		return () =>
+			document.removeEventListener('mousedown', handleClickOutside)
+	}, [dtOpen])
+
 	return (
 		<header className="uheader">
 			{/* Banner de fondo */}
@@ -58,12 +80,35 @@ const UniverseHeader = ({
 					onClick={onClickMatches}>
 					VER TODOS LOS PARTIDOS
 				</button>
-				<button
-					className={`btn ${activeView === 'byDT' ? 'btn--primary' : 'btn--neutral'}`}
-					type="button"
-					onClick={onClickByDT}>
-					FILTRAR POR DT
-				</button>
+
+				{/* Botón DT con dropdown */}
+				<div className="uheader__dtWrap" ref={dtRef}>
+					<button
+						className={`btn ${activeView === 'byDT' ? 'btn--primary' : 'btn--neutral'}`}
+						type="button"
+						onClick={() => setDtOpen((v) => !v)}>
+						FILTRAR POR DT
+					</button>
+					{dtOpen && dtList.length > 0 && (
+						<ul className="uheader__dtMenu">
+							{dtList.map((dt) => (
+								<li key={dt}>
+									<button
+										type="button"
+										className={`uheader__dtItem ${
+											selectedDT === dt ? 'is-active' : ''
+										}`}
+										onClick={() => {
+											onSelectDT?.(dt)
+											setDtOpen(false)
+										}}>
+										{dt}
+									</button>
+								</li>
+							))}
+						</ul>
+					)}
+				</div>
 			</div>
 		</header>
 	)
