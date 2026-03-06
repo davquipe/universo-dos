@@ -48,7 +48,7 @@ export default function MatchesPage() {
 
 	return (
 		<>
-			{matches.map((m, idx) => (
+			{matches.map((m) => (
 				<MatchAccordion
 					key={m.partidoId}
 					dateLabel={formatDateLabel(m.fechaFormatted, m.tipo)}
@@ -56,7 +56,7 @@ export default function MatchesPage() {
 					venue={`${m.estadio} - ${m.ciudadPais}`}
 					dt={m.directorTecnico}
 					rows={m.players}
-					defaultOpen={idx === 0}
+					defaultOpen={false}
 				/>
 			))}
 		</>

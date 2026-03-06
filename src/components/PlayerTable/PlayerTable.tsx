@@ -21,6 +21,10 @@ type Props = {
 	highlightQuery?: string
 	emptyStateText?: string
 	loading?: boolean
+	/** Controlled sort mode: if provided, internal sorting is skipped */
+	externalSortKey?: SortKey
+	externalSortAsc?: boolean
+	onSortChange?: (key: SortKey, asc: boolean) => void
 }
 
 function useIsMobile(breakpoint = 640) {
@@ -104,17 +108,27 @@ function PositionImg({ code }: { code: string }) {
 	)
 }
 
+export { type SortKey }
+
 export default function PlayerTable({
 	rows,
 	onRowClick,
 	highlightQuery,
 	emptyStateText = 'No hay datos para mostrar.',
 	loading = false,
+	externalSortKey,
+	externalSortAsc,
+	onSortChange,
 }: Props) {
-	const [sortKey, setSortKey] = useState<SortKey>('name')
-	const [sortAsc, setSortAsc] = useState(true)
+	const controlled = externalSortKey !== undefined && onSortChange !== undefined
+	const [internalSortKey, setInternalSortKey] = useState<SortKey>('name')
+	const [internalSortAsc, setInternalSortAsc] = useState(true)
+
+	const sortKey = controlled ? externalSortKey : internalSortKey
+	const sortAsc = controlled ? (externalSortAsc ?? true) : internalSortAsc
 
 	const sorted = useMemo(() => {
+		if (controlled) return rows
 		const clone = [...rows]
 		clone.sort((a, b) => {
 			const va = a[sortKey] as any
@@ -125,13 +139,18 @@ export default function PlayerTable({
 			return sortAsc ? va - vb : vb - va
 		})
 		return clone
-	}, [rows, sortKey, sortAsc])
+	}, [rows, sortKey, sortAsc, controlled])
 
 	const handleSort = (key: SortKey) => {
-		if (key === sortKey) setSortAsc((v) => !v)
-		else {
-			setSortKey(key)
-			setSortAsc(true)
+		if (controlled) {
+			const newAsc = key === sortKey ? !sortAsc : true
+			onSortChange(key, newAsc)
+		} else {
+			if (key === internalSortKey) setInternalSortAsc((v) => !v)
+			else {
+				setInternalSortKey(key)
+				setInternalSortAsc(true)
+			}
 		}
 	}
 

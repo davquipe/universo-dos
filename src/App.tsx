@@ -47,7 +47,10 @@ function App() {
 				logoAlt="El Comercio"
 				credits={[
 					{ label: 'Investigación', name: 'Raúl Castillo' },
-					{ label: 'Diseño', name: 'Christian Marlow' },
+					{
+						label: 'Diseño e Investigación',
+						name: 'Christian Marlow',
+					},
 					{ label: 'Programación', name: 'David Condori' },
 				]}
 			/>

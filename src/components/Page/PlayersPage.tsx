@@ -1,5 +1,5 @@
 import { useMemo, useState, type FormEvent, useEffect } from 'react'
-import PlayerTable from '../PlayerTable/PlayerTable'
+import PlayerTable, { type SortKey } from '../PlayerTable/PlayerTable'
 import Pagination from '../common/Pagination'
 import { useScores, aggregatePlayers } from '../../hooks/userPlayer'
 import type { PlayerRow } from '../../types/types'
@@ -27,6 +27,8 @@ export default function PlayersPage({
 	const [qLocal, setQLocal] = useState('')
 	const q = query ?? qLocal
 	const [page, setPage] = useState(1)
+	const [sortKey, setSortKey] = useState<SortKey>('name')
+	const [sortAsc, setSortAsc] = useState(true)
 
 	useEffect(() => {
 		if (query !== undefined) setQLocal(query)
@@ -44,13 +46,29 @@ export default function PlayersPage({
 		return rows.filter((r) => norm(r.name).includes(nq))
 	}, [rows, q])
 
-	// Reset page when filter changes
+	// Sort globally before paginating
+	const sortedRows = useMemo(() => {
+		const clone = [...filteredRows]
+		clone.sort((a, b) => {
+			const va = a[sortKey] as string | number
+			const vb = b[sortKey] as string | number
+			if (typeof va === 'string') {
+				return sortAsc
+					? (va as string).localeCompare(vb as string)
+					: (vb as string).localeCompare(va as string)
+			}
+			return sortAsc ? (va as number) - (vb as number) : (vb as number) - (va as number)
+		})
+		return clone
+	}, [filteredRows, sortKey, sortAsc])
+
+	// Reset page when filter or sort changes
 	useEffect(() => {
 		setPage(1)
-	}, [q])
+	}, [q, sortKey, sortAsc])
 
-	const totalPages = Math.max(1, Math.ceil(filteredRows.length / PAGE_SIZE))
-	const pagedRows = filteredRows.slice(
+	const totalPages = Math.max(1, Math.ceil(sortedRows.length / PAGE_SIZE))
+	const pagedRows = sortedRows.slice(
 		(page - 1) * PAGE_SIZE,
 		page * PAGE_SIZE,
 	)
@@ -106,6 +124,12 @@ export default function PlayersPage({
 				highlightQuery={q}
 				emptyStateText="No hay jugadores que coincidan."
 				loading={isLoading}
+				externalSortKey={sortKey}
+				externalSortAsc={sortAsc}
+				onSortChange={(key, asc) => {
+					setSortKey(key)
+					setSortAsc(asc)
+				}}
 			/>
 
 			{!isLoading && (
