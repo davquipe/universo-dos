@@ -334,6 +334,22 @@ $skel-bg: linear-gradient(90deg, #eee 25%, #e0e0e0 37%, #eee 63%);
 	font-weight: 300;
 }
 
+/* ============== DT BANNER ============== */
+.dt-banner {
+	width: 100%;
+	max-width: 980px;
+	margin: 14px auto 0;
+	padding: 14px 16px;
+	text-align: center;
+}
+.dt-banner__title {
+	color: #000;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	margin: 0;
+}
+
 /* ============== TABLET (641–860px) ============== */
 @media (max-width: 860px) {
 	.pt__row {

@@ -24,10 +24,17 @@ export default function DTFilterPage({ selectedDT }: Props) {
 		)
 
 	return (
-		<PlayerTable
-			rows={rows}
-			emptyStateText="No hay jugadores para este DT."
-			loading={isLoading}
-		/>
+		<>
+			<div className="dt-banner">
+				<h2 className="dt-banner__title">
+					DT {selectedDT.toUpperCase()}
+				</h2>
+			</div>
+			<PlayerTable
+				rows={rows}
+				emptyStateText="No hay jugadores para este DT."
+				loading={isLoading}
+			/>
+		</>
 	)
 }
