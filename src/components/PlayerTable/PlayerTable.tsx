@@ -120,7 +120,8 @@ export default function PlayerTable({
 	externalSortAsc,
 	onSortChange,
 }: Props) {
-	const controlled = externalSortKey !== undefined && onSortChange !== undefined
+	const controlled =
+		externalSortKey !== undefined && onSortChange !== undefined
 	const [internalSortKey, setInternalSortKey] = useState<SortKey>('name')
 	const [internalSortAsc, setInternalSortAsc] = useState(true)
 

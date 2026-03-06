@@ -57,7 +57,9 @@ export default function PlayersPage({
 					? (va as string).localeCompare(vb as string)
 					: (vb as string).localeCompare(va as string)
 			}
-			return sortAsc ? (va as number) - (vb as number) : (vb as number) - (va as number)
+			return sortAsc
+				? (va as number) - (vb as number)
+				: (vb as number) - (va as number)
 		})
 		return clone
 	}, [filteredRows, sortKey, sortAsc])
@@ -68,10 +70,7 @@ export default function PlayersPage({
 	}, [q, sortKey, sortAsc])
 
 	const totalPages = Math.max(1, Math.ceil(sortedRows.length / PAGE_SIZE))
-	const pagedRows = sortedRows.slice(
-		(page - 1) * PAGE_SIZE,
-		page * PAGE_SIZE,
-	)
+	const pagedRows = sortedRows.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault()
