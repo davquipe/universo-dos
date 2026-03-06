@@ -81,6 +81,7 @@ $text: #222;
 	display: grid;
 	place-content: center;
 	cursor: pointer;
+	box-shadow: inset 0px 2px 2px #00000029;
 }
 .ma__chevIcon {
 	transition: transform 0.22s ease;
