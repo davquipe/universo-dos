@@ -28,8 +28,8 @@ function App() {
 			<Header />
 
 			<UniverseHeader
-				bgUrl="https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/mundial-de-clubes-2029-clasificacion-tabla-de-posiciones-como-van-equipos-conmebol/img/universoBicolor.png"
-				mobileBgUrl="https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/mundial-de-clubes-2029-clasificacion-tabla-de-posiciones-como-van-equipos-conmebol/img/MOBILE.png"
+				bgUrl="https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/seleccion-peruana-peru-partidos-jugados-goles-estadisticas-convocados-mano-menezes-otros-dt/img/header-desktop.png"
+				mobileBgUrl="https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/seleccion-peruana-peru-partidos-jugados-goles-estadisticas-convocados-mano-menezes-otros-dt/img/header-mobile.png"
 				activeView={view}
 				onClickGeneral={() => setView('general')}
 				onClickMatches={() => setView('matches')}

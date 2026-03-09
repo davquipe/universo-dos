@@ -89,7 +89,7 @@ function highlightText(name: string, q?: string) {
 }
 
 const POS_BASE =
-	'https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/mundial-de-clubes-2029-clasificacion-tabla-de-posiciones-como-van-equipos-conmebol/img'
+	'https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/seleccion-peruana-peru-partidos-jugados-goles-estadisticas-convocados-mano-menezes-otros-dt/img'
 
 const POS_MAP: Record<string, { img: string; label: string }> = {
 	ARQ: { img: `${POS_BASE}/arq.png`, label: 'Arquero' },

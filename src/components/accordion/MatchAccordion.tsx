@@ -3,12 +3,12 @@ import type { PlayerRow } from '../../types/types'
 import PlayerTable from '../PlayerTable/PlayerTable'
 
 type Props = {
-	dateLabel: string // "10 de octubre de 2025 (Amistoso)"
-	title: string // "Chile 2 - 2 Perú"
-	venue: string // "Estadio Bicentenario de La Florida - CHILE"
-	dt?: string // "Manuel Barreto"
-	rows: PlayerRow[] // filas para la tabla
-	defaultOpen?: boolean // si inicia abierto
+	dt?: string
+	title: string
+	venue: string
+	rows: PlayerRow[]
+	dateLabel: string
+	defaultOpen?: boolean
 	onToggle?: (open: boolean) => void
 }
 

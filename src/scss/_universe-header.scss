@@ -30,8 +30,6 @@ body {
 
 	&__hero {
 		width: 100%;
-		height: 380px;
-		overflow: hidden;
 		border-radius: 0;
 
 		picture,
@@ -39,8 +37,6 @@ body {
 			width: 100%;
 			height: 100%;
 			display: block;
-			object-fit: cover;
-			object-position: center top;
 		}
 	}
 
@@ -218,16 +214,15 @@ body {
 		padding: 0;
 		max-width: 100%;
 		&__hero {
-			width: 100vw;
-			margin-left: calc(50% - 50vw);
-			aspect-ratio: 16/9;
-			height: auto;
-			background-image: var(--bg-mobile);
-			background-size: contain;
-			background-position: top center;
-			background-repeat: no-repeat;
-			background-color: #fff;
+			width: 100%;
+			height: 100%;
 			border-radius: 0;
+
+			picture,
+			img {
+				width: 100%;
+				height: 100%;
+			}
 		}
 
 		&__lead,
