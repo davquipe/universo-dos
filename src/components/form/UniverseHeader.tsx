@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
 type Props = {
-	/** Imagen de fondo para desktop */
 	bgUrl: string
-	/** Imagen de fondo para mobile (fallback: usa bgUrl si no se pasa) */
-	mobileBgUrl?: string
+	dtList?: string[]
 	activeView?: string
+	selectedDT?: string
+	mobileBgUrl?: string
 	onClickGeneral?: () => void
 	onClickMatches?: () => void
-	dtList?: string[]
-	selectedDT?: string
 	onSelectDT?: (dt: string) => void
 }
 
@@ -26,7 +24,6 @@ const UniverseHeader = ({
 	const [dtOpen, setDtOpen] = useState(false)
 	const dtRef = useRef<HTMLDivElement>(null)
 
-	// Cerrar dropdown al hacer click fuera
 	useEffect(() => {
 		if (!dtOpen) return
 		const handleClickOutside = (e: MouseEvent) => {
@@ -49,22 +46,21 @@ const UniverseHeader = ({
 						srcSet={mobileBgUrl ?? bgUrl}
 					/>
 					<img
-						src={mobileBgUrl ?? bgUrl}
-						alt="Banner principal del universo de clubes"
-						className="uheader__heroImg"
+						loading="lazy"
 						decoding="async"
 						fetchPriority="high"
+						src={mobileBgUrl ?? bgUrl}
+						className="uheader__heroImg"
+						alt="Banner principal del universo de clubes"
 					/>
 				</picture>
 			</div>
 
-			{/* Texto descriptivo */}
 			<p className="uheader__lead">
 				Revisa los datos y el historial de todos los jugadores
 				convocados rumbo al Mundial 2030 actualizado fecha a fecha.
 			</p>
 
-			{/* Botones */}
 			<div className="uheader__cta">
 				<button
 					className={`btn ${activeView === 'general' ? 'btn--primary' : 'btn--neutral'}`}
@@ -79,7 +75,6 @@ const UniverseHeader = ({
 					VER TODOS LOS PARTIDOS
 				</button>
 
-				{/* Botón DT con dropdown */}
 				<div className="uheader__dtWrap" ref={dtRef}>
 					<button
 						className={`btn ${activeView === 'byDT' ? 'btn--primary' : 'btn--neutral'}`}

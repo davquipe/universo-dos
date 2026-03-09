@@ -25,7 +25,7 @@ const FooterCredits = ({
 
 			<div className="fc__logo" aria-hidden={logoUrl ? 'false' : 'true'}>
 				{logoUrl ? (
-					<img src={logoUrl} alt={logoAlt} />
+					<img src={logoUrl} loading="lazy" alt={logoAlt} />
 				) : (
 					<span className="fc__logoMark">C</span>
 				)}

@@ -103,7 +103,12 @@ function PositionImg({ code }: { code: string }) {
 	if (!pos) return <span>{code || '—'}</span>
 	return (
 		<span className="pt__posWrap" data-tooltip={pos.label} tabIndex={0}>
-			<img className="pt__pitch" src={pos.img} alt={pos.label} />
+			<img
+				className="pt__pitch"
+				src={pos.img}
+				loading="lazy"
+				alt={pos.label}
+			/>
 		</span>
 	)
 }
@@ -364,6 +369,7 @@ export default function PlayerTable({
 												className="pt__avatar"
 												src={r.avatarUrl}
 												alt={r.name}
+												loading="lazy"
 											/>
 										) : (
 											<span
