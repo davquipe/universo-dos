@@ -111,6 +111,7 @@ $radius: 14px;
 		font-weight: 500;
 		font-family: var(--ff-xc);
 		letter-spacing: 0.3px;
+		line-height: 1;
 		cursor: pointer;
 		box-shadow: 0px 3px 6px #00000029;
 		transition:
@@ -220,7 +221,7 @@ $radius: 14px;
 			padding: 8px 16px;
 			&--primary,
 			&--neutral {
-				font-size: 11px;
+				font-size: 14px;
 			}
 		}
 		&__dtItem {
