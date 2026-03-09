@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
 	bgUrl: string
@@ -26,32 +26,83 @@ const UniverseHeader = ({
 
 	useEffect(() => {
 		if (!dtOpen) return
-		const handleClickOutside = (e: MouseEvent) => {
-			if (dtRef.current && !dtRef.current.contains(e.target as Node)) {
+
+		const handleClickOutside = (e: PointerEvent) => {
+			const target = e.target as Node | null
+			if (dtRef.current && target && !dtRef.current.contains(target)) {
 				setDtOpen(false)
 			}
 		}
-		document.addEventListener('mousedown', handleClickOutside)
-		return () =>
-			document.removeEventListener('mousedown', handleClickOutside)
+
+		document.addEventListener('pointerdown', handleClickOutside)
+
+		return () => {
+			document.removeEventListener('pointerdown', handleClickOutside)
+		}
 	}, [dtOpen])
+
+	const handleToggleDT = useCallback(() => {
+		setDtOpen((prev) => !prev)
+	}, [])
+
+	const handleSelectDT = useCallback(
+		(dt: string) => {
+			onSelectDT?.(dt)
+			setDtOpen(false)
+		},
+		[onSelectDT],
+	)
+
+	const heroSrc = mobileBgUrl ?? bgUrl
+
+	const generalBtnClass = useMemo(
+		() =>
+			`btn ${activeView === 'general' ? 'btn--primary' : 'btn--neutral'}`,
+		[activeView],
+	)
+
+	const matchesBtnClass = useMemo(
+		() =>
+			`btn ${activeView === 'matches' ? 'btn--primary' : 'btn--neutral'}`,
+		[activeView],
+	)
+
+	const dtBtnClass = useMemo(
+		() => `btn ${activeView === 'byDT' ? 'btn--primary' : 'btn--neutral'}`,
+		[activeView],
+	)
+
+	const dtMenu = useMemo(() => {
+		if (!dtOpen || dtList.length === 0) return null
+
+		return (
+			<ul className="uheader__dtMenu">
+				{dtList.map((dt) => (
+					<li key={dt}>
+						<button
+							type="button"
+							className={`uheader__dtItem ${selectedDT === dt ? 'is-active' : ''}`}
+							onClick={() => handleSelectDT(dt)}>
+							{dt}
+						</button>
+					</li>
+				))}
+			</ul>
+		)
+	}, [dtOpen, dtList, selectedDT, handleSelectDT])
 
 	return (
 		<header className="uheader">
 			<div className="uheader__hero">
 				<picture>
 					<source media="(min-width: 641px)" srcSet={bgUrl} />
-					<source
-						media="(max-width: 640px)"
-						srcSet={mobileBgUrl ?? bgUrl}
-					/>
+					<source media="(max-width: 640px)" srcSet={heroSrc} />
 					<img
-						loading="lazy"
-						decoding="async"
-						fetchPriority="high"
-						src={mobileBgUrl ?? bgUrl}
+						src={heroSrc}
 						className="uheader__heroImg"
 						alt="Banner principal del universo de clubes"
+						decoding="async"
+						fetchPriority="high"
 					/>
 				</picture>
 			</div>
@@ -63,13 +114,14 @@ const UniverseHeader = ({
 
 			<div className="uheader__cta">
 				<button
-					className={`btn ${activeView === 'general' ? 'btn--primary' : 'btn--neutral'}`}
+					className={generalBtnClass}
 					type="button"
 					onClick={onClickGeneral}>
 					MINUTOS ACUMULADOS
 				</button>
+
 				<button
-					className={`btn ${activeView === 'matches' ? 'btn--primary' : 'btn--neutral'}`}
+					className={matchesBtnClass}
 					type="button"
 					onClick={onClickMatches}>
 					VER TODOS LOS PARTIDOS
@@ -77,34 +129,17 @@ const UniverseHeader = ({
 
 				<div className="uheader__dtWrap" ref={dtRef}>
 					<button
-						className={`btn ${activeView === 'byDT' ? 'btn--primary' : 'btn--neutral'}`}
+						className={dtBtnClass}
 						type="button"
-						onClick={() => setDtOpen((v) => !v)}>
+						onClick={handleToggleDT}>
 						FILTRAR POR DT
 					</button>
-					{dtOpen && dtList.length > 0 && (
-						<ul className="uheader__dtMenu">
-							{dtList.map((dt) => (
-								<li key={dt}>
-									<button
-										type="button"
-										className={`uheader__dtItem ${
-											selectedDT === dt ? 'is-active' : ''
-										}`}
-										onClick={() => {
-											onSelectDT?.(dt)
-											setDtOpen(false)
-										}}>
-										{dt}
-									</button>
-								</li>
-							))}
-						</ul>
-					)}
+
+					{dtMenu}
 				</div>
 			</div>
 		</header>
 	)
 }
 
-export default UniverseHeader
+export default memo(UniverseHeader)
