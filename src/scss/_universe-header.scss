@@ -9,19 +9,6 @@ $text: #6b6b6b;
 $shadow: 0 8px 14px rgba(0, 0, 0, 0.12);
 $radius: 14px;
 
-html,
-body {
-	margin: 0;
-}
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-body {
-	overflow-x: hidden;
-}
-
 .uheader {
 	max-width: $max;
 	margin: 0 auto;
